@@ -20,7 +20,7 @@
             android:label="             Log In" />
         <activity
             android:name=".GoalActivity"
-            android:label="Goal" />
+            android:label="@string/app_name_goal" />
         <activity
             android:name=".SignUpActivity"
             android:label="Sign Up"
