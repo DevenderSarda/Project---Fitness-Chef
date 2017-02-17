@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
 import android.view.MenuItem;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
      getSupportActionBar().setLogo(R.drawable.ic_arrow_back_white_24dp);
