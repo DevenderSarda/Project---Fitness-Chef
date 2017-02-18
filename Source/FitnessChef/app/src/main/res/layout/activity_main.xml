@@ -52,6 +52,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#666362" />
+        android:background="#666362"
+        android:onClick="sign" />
 
 </RelativeLayout>

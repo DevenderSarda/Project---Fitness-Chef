@@ -18,9 +18,17 @@
         <activity
             android:name=".LoginActivity"
             android:label="             Log In" />
-        <activity android:name=".Register" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".DetailsActivity"></activity>
+
+
+        <activity android:name=".DetailsActivity" android:label="Details"></activity>
+
+        <activity
+            android:name=".GoalActivity"
+            android:label="@string/app_name_goal" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="Sign Up"
+            ></activity>
     </application>
 
 </manifest>

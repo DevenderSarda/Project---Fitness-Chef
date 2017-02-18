@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">The Fitness Chef</string>
+    <string name="app_name">Fitness Chef</string>
+    <string name="app_name_goal">Goal</string>
 </resources>
