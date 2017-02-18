@@ -5,9 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity  {
-
+    private EditText email;
+    private EditText pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,4 +39,29 @@ public class LoginActivity extends AppCompatActivity  {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void valid(View v) {
+        email = (EditText) findViewById(R.id.editText);
+        pass = (EditText) findViewById(R.id.editText2);
+        email.setError(null);
+        pass.setError(null);
+        String x = email.getText().toString();
+        String y = pass.getText().toString();
+        if (x.isEmpty() & y.isEmpty()) {
+            email.setError("Email is required");
+            pass.setError("Passowrd is required");
+        } else if (x.isEmpty()) {
+            email.setError("Email is required");
+        } else if (y.isEmpty()) {
+            pass.setError("Password is required");
+        } else {
+            if (x.equals("nandigam.nag@gmail.com") & y.equals("hello")) {
+
+            } else {
+                email.setError("Email or Password Mismatch");
+                pass.setError("Email or Password Mismatch");
+            }
+        }
+    }
+
 }
