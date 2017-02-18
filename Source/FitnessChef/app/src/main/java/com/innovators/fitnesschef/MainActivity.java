@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(redirect);
     }
 
-    public void sign(View v)
+    public void in(View v)
     {
         Intent redirect=new Intent(MainActivity.this,SignUpActivity.class);
         startActivity(redirect);
