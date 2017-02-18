@@ -19,7 +19,8 @@
             android:name=".LoginActivity"
             android:label="             Log In" />
         <activity android:name=".Register" />
-        <activity android:name=".SignUp"></activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".DetailsActivity"></activity>
     </application>
 
 </manifest>
