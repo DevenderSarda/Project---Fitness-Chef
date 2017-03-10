@@ -1,0 +1,4 @@
+fitnessChef.directive('blankDirective', [function(){
+
+}]);
+
