@@ -5,16 +5,22 @@
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
+                    <input type="text" ng-model="username" placeholder="">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
+                    <input type="password" ng-model="password" placeholder="">
                 </label>
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
-            <a ng-click="login()" id="login-button1" class="button button-stable  button-block">Log in</a>
-            <a ui-sref="register" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
+            <a ng-click="login(username, password)" id="login-button1" class="button button-stable  button-block">Log in</a>
+            <a ng-click="register(username, password)" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
+                        <div id="social-links">
+                <ul>
+                    <li ng-click="fbLogin()"><span class="ifacebook"><img src="img/social-icons/facebook.png"></span><a href="#" class="afacebook">sign in with facebook</a></li>
+                    <li ng-click="gplusLogin()"><span class="igoogleplus"><img src="img/social-icons/googleplus.png"></span><a href="#" class="agoogleplus">sign in with google+</a></li>
+                </ul>
+            </div>
         </form>
     </ion-content>
 </ion-view>

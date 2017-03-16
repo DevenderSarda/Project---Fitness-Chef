@@ -6,12 +6,6 @@ fitnessChef.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('profile', {
-    url: '/profile',
-    templateUrl: 'templates/profile.html',
-    controller: 'profileCtrl'
-  })
-
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
@@ -28,6 +22,23 @@ fitnessChef.config(function($stateProvider, $urlRouterProvider) {
     url: '/home',
     templateUrl: 'templates/home.html',
     controller: 'homeCtrl'
+  })
+  
+  
+  .state('menu.home', {
+    url: '/home',
+    views: {
+      'main': {
+        templateUrl: 'templates/home.html',
+        controller: 'homeCtrl'
+      }
+    }
+  })
+
+  .state('menu', {
+    url: '/main',
+    templateUrl: 'templates/menu.html',
+    abstract:true
   })
 
 
