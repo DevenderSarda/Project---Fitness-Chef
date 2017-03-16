@@ -1,14 +1,20 @@
-<ion-view title="Login" id="page2">
+<ion-view title="Fitness Chef or Nothing" id="page2" class="log">
     <ion-content padding="true" class="has-header">
-        <button id="login-button4" class="button button-positive  button-block">Login with Facebook</button>
+        <button id="login-button4" class="button button-positive  button-block">Continue with Facebook</button>
+        <button id="login-button4" class="button button-assertive button-block">Sign in with Google</button>
         <form class="list">
             <ion-list>
-                <label class="item item-input">
+                <label class="item item-input" style="background-color: transparent;" >
                     <span class="input-label">Username</span>
+<<<<<<< HEAD
                     <input type="text" ng-model="username" placeholder="">
+=======
+                    <input type="text" placeholder="John">
+>>>>>>> origin/master
                 </label>
-                <label class="item item-input">
+                <label class="item item-input" style="background-color: transparent;">
                     <span class="input-label">Password</span>
+<<<<<<< HEAD
                     <input type="password" ng-model="password" placeholder="">
                 </label>
             </ion-list>
@@ -21,6 +27,15 @@
                     <li ng-click="gplusLogin()"><span class="igoogleplus"><img src="img/social-icons/googleplus.png"></span><a href="#" class="agoogleplus">sign in with google+</a></li>
                 </ul>
             </div>
+=======
+                    <input type="password" placeholder="******">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 10px;"></div>
+            <a ng-click="login()" id="login-button1" class="button button-outline  button-dark button-block">Log in</a>
+            <a ui-sref="" id="login-button3" class="button button-positive  button-block button-clear">Forgot password?</a>
+            <a ui-sref="register" id="login-button2" class="button button-positive  button-block button-clear">Or create a new account</a>
+>>>>>>> origin/master
         </form>
     </ion-content>
 </ion-view>
