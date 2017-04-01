@@ -53,6 +53,16 @@
         android:id="@+id/textView9"
         android:width="255dp" />
 
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignLeft="@+id/dob"
+        android:layout_alignStart="@+id/dob"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp">
     <RadioButton
         android:text="male"
         android:textColor="#000000"
@@ -63,7 +73,7 @@
         android:layout_alignLeft="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
         android:layout_marginTop="14dp"
-        android:id="@+id/radioButton4" />
+        android:id="@+id/male" />
 
     <RadioButton
         android:text="female"
@@ -74,32 +84,33 @@
         android:layout_below="@+id/radioButton4"
         android:layout_alignLeft="@+id/radioButton4"
         android:layout_alignStart="@+id/radioButton4"
-        android:id="@+id/radioButton5" />
+        android:id="@+id/female" />
+    </RadioGroup>
 
     <TextView
-        android:text="First Cry"
+        android:text="Age"
         android:textColor="#000000"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButton5"
-        android:layout_alignLeft="@+id/radioButton5"
-        android:layout_alignStart="@+id/radioButton5"
-        android:layout_marginTop="16dp"
         android:id="@+id/dob"
-        android:width="255dp" />
+        android:width="255dp"
+        android:layout_below="@+id/radio"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_marginTop="34dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
+        android:id="@+id/ddmmyyyy"
+        android:hint="in years"
         android:layout_below="@+id/dob"
         android:layout_alignLeft="@+id/dob"
         android:layout_alignStart="@+id/dob"
-        android:layout_marginTop="18dp"
-        android:id="@+id/ddmmyyyy"
-        android:hint="dd/mm/yyyy" />
+        android:layout_marginTop="12dp" />
 
     <TextView
         android:text="Location"
@@ -107,34 +118,35 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:width="255dp"
         android:layout_below="@+id/ddmmyyyy"
         android:layout_alignLeft="@+id/ddmmyyyy"
         android:layout_alignStart="@+id/ddmmyyyy"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textView12"
-        android:width="255dp" />
+        android:layout_marginTop="18dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_below="@+id/textView12"
-        android:layout_alignRight="@+id/ddmmyyyy"
-        android:layout_alignEnd="@+id/ddmmyyyy"
-        android:layout_marginTop="16dp"
         android:id="@+id/city"
-        android:hint="City Name" />
+        android:hint="City Name"
+        android:layout_below="@+id/textView12"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12"
+        android:layout_marginTop="7dp" />
 
     <Button
-        android:text="Next"
-        android:textColor="#000000"
-        android:textStyle="bold"
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/next"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:onClick="details"
+        android:text="Next"
+        android:textColor="#000000"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -1,6 +1,9 @@
 package com.innovators.fitnesschef;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
@@ -62,6 +65,20 @@ public class LoginActivity extends AppCompatActivity  {
                 pass.setError("Email or Password Mismatch");
             }
         }
+
+        SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edt = sp.edit();
+
+        edt.putString("Name", email.getText().toString());
+        edt.commit();
+
+        Intent redirect = new Intent(LoginActivity.this, Dashboard.class);
+        startActivity(redirect);
+
     }
+
+
+
+
 
 }

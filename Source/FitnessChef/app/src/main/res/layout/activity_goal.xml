@@ -106,7 +106,7 @@
         android:layout_alignEnd="@+id/ht"
         android:layout_marginTop="19dp"
         android:id="@+id/wt"
-        android:hint="in pounds" />
+        android:hint="in kgs" />
 
     <Button
         android:text="Next"
@@ -114,11 +114,11 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ht"
-        android:layout_toEndOf="@+id/ht"
         android:id="@+id/button9"
-        android:onClick="details" />
+        android:onClick="details"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

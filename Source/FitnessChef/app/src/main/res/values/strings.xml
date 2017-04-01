@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Fitness Chef</string>
     <string name="app_name_goal">Goal</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
 </resources>

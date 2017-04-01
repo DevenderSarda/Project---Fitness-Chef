@@ -1,9 +1,11 @@
 package com.innovators.fitnesschef;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -39,6 +41,16 @@ public class GoalActivity extends AppCompatActivity {
         {
             if(!s.isEmpty()&!u.isEmpty())
             {
+                Log.d("GoalActivity",s);
+                //shared preferences
+                SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sp.edit();
+                edt.putString("height",s);
+                edt.putString("weight",u);
+                edt.commit();
+
+
+
                 Intent redirect=new Intent(GoalActivity.this,DetailsActivity.class);
                 startActivity(redirect);
             }
@@ -61,7 +73,11 @@ public class GoalActivity extends AppCompatActivity {
         {
             t.setError("This selection is required");
         }
-        }
+
+
+
+
+    }
 
 
 
