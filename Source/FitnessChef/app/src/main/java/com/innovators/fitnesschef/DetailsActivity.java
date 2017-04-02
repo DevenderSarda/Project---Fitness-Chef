@@ -52,7 +52,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                 Log.d("DetailsActivity",userName);
 
-             Intent redirect = new Intent(DetailsActivity.this, Dashboard.class);
+             Intent redirect = new Intent(DetailsActivity.this, RegisterActivity.class);
              startActivity(redirect);
 
             }
