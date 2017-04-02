@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var fitnessChef = angular.module('fitnesschef', ['ionic', 'ngCordova']);
+var fitnessChef = angular.module('fitnesschef', ['ionic', 'ngCordova', 'firebase']);
 
 fitnessChef.constant('ApiEndpoint', {
   url: 'http://ion-api.dev/'
@@ -25,3 +25,8 @@ fitnessChef.run(function($ionicPlatform) {
     }
   });
 });
+
+var requestToken = "";
+var accessToken = "";
+var clientId = "785757971784-q3atlmlfao7skdvvp40us5ojk7iuk0bc.apps.googleusercontent.com";
+var clientSecret = "AIzaSyCXJNuYLzvuyRDHgh7zbzPsv071SI555So";

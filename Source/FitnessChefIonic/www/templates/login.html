@@ -6,10 +6,28 @@
             <ion-list>
                 <label class="item item-input" style="background-color: transparent;" >
                     <span class="input-label">Username</span>
+<<<<<<< HEAD
+                    <input type="text" ng-model="username" placeholder="">
+=======
                     <input type="text" placeholder="John">
+>>>>>>> origin/master
                 </label>
                 <label class="item item-input" style="background-color: transparent;">
                     <span class="input-label">Password</span>
+<<<<<<< HEAD
+                    <input type="password" ng-model="password" placeholder="">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 40px;"></div>
+            <a ng-click="login(username, password)" id="login-button1" class="button button-stable  button-block">Log in</a>
+            <a ng-click="register(username, password)" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
+                        <div id="social-links">
+                <ul>
+                    <li ng-click="fbLogin()"><span class="ifacebook"><img src="img/social-icons/facebook.png"></span><a href="#" class="afacebook">sign in with facebook</a></li>
+                    <li ng-click="gplusLogin()"><span class="igoogleplus"><img src="img/social-icons/googleplus.png"></span><a href="#" class="agoogleplus">sign in with google+</a></li>
+                </ul>
+            </div>
+=======
                     <input type="password" placeholder="******">
                 </label>
             </ion-list>
@@ -17,6 +35,7 @@
             <a ng-click="login()" id="login-button1" class="button button-outline  button-dark button-block">Log in</a>
             <a ui-sref="" id="login-button3" class="button button-positive  button-block button-clear">Forgot password?</a>
             <a ui-sref="register" id="login-button2" class="button button-positive  button-block button-clear">Or create a new account</a>
+>>>>>>> origin/master
         </form>
     </ion-content>
 </ion-view>

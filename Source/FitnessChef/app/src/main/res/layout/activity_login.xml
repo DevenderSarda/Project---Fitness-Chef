@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.innovators.fitnesschef.LoginActivity">
+    tools:context="com.innovators.fitnesschef.LoginActivity"
+    android:background="@drawable/r28">
 
 
 
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button4"
         android:textColor="@android:color/black"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -28,7 +29,7 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Sign in with Google"
+        android:text="CONTINUE with google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button6"
@@ -42,6 +43,8 @@
 
     <TextView
         android:text="We will never Post anything without your permission"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -54,10 +57,11 @@
 
     <TextView
         android:text="OR"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
-        android:textColor="@android:color/holo_blue_light"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true" />
@@ -89,6 +93,7 @@
         android:ems="10"
         android:id="@+id/editText"
         android:hint="Email"
+
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -102,6 +107,7 @@
         android:ems="10"
         android:id="@+id/editText2"
         android:hint="Password"
+
         android:layout_below="@+id/editText"
         android:layout_marginTop="14dp"
         android:layout_alignParentRight="true"
@@ -109,38 +115,26 @@
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 
-    <Button
-        android:text="Sign In"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:background="#7288DB"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="valid" />
-
     <TextView
         android:text="Forgot Password?"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:onClick="forgot"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/colorAccent"
         android:layout_below="@+id/button3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp" />
 
     <TextView
         android:text="By continuing, you agree to our Terms of Service and  Privacy Policy"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
         android:width="240dp"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@android:color/background_dark"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -151,16 +145,32 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView2" />
+        android:id="@+id/imageView2"
+        android:backgroundTint="@color/black"
+        android:background="@android:color/background_dark" />
+
+    <Button
+        android:text="Sign In"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="18dp"
+        android:onClick="valid"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_partial_secure"
-        android:layout_marginTop="35dp"
+        app:srcCompat="@android:drawable/ic_secure"
         android:id="@+id/imageView5"
-        android:layout_below="@+id/imageView2"
 
-        android:layout_marginLeft="5dp" />
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_marginBottom="11dp"
+        android:layout_toLeftOf="@+id/editText2"
+        android:layout_alignTop="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

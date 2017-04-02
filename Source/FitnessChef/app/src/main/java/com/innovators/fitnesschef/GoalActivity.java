@@ -1,9 +1,14 @@
 package com.innovators.fitnesschef;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -29,6 +34,9 @@ public class GoalActivity extends AppCompatActivity {
         h=(EditText) findViewById(R.id.ht);
         w=(EditText) findViewById(R.id.wt);
         t=(TextView) findViewById(R.id.goal1);
+
+        h.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+        w.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
     }
 
     public void details(View v)
@@ -39,6 +47,16 @@ public class GoalActivity extends AppCompatActivity {
         {
             if(!s.isEmpty()&!u.isEmpty())
             {
+                Log.d("GoalActivity",s);
+                //shared preferences
+                SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sp.edit();
+                edt.putString("height",s);
+                edt.putString("weight",u);
+                edt.commit();
+
+
+
                 Intent redirect=new Intent(GoalActivity.this,DetailsActivity.class);
                 startActivity(redirect);
             }
@@ -59,9 +77,22 @@ public class GoalActivity extends AppCompatActivity {
         }
         else
         {
-            t.setError("This selection is required");
+            AlertDialog alertDialog = new AlertDialog.Builder(GoalActivity.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Your goal is not set");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
         }
-        }
+
+
+
+
+    }
 
 
 

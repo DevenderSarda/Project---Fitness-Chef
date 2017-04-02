@@ -27,6 +27,7 @@
 
     <Button
         android:text="Log In"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button"
@@ -36,12 +37,13 @@
         android:id="@+id/button2"
         android:layout_alignRight="@+id/button"
         android:layout_alignEnd="@+id/button"
-        android:background="#666362"
+        android:background="@android:color/background_dark"
         android:textColor="@android:color/white"
         android:onClick="loginpage" />
 
     <Button
         android:text="Sign Up"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
@@ -52,7 +54,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#666362"
+        android:background="@android:color/background_dark"
         android:onClick="in" />
 
 </RelativeLayout>
