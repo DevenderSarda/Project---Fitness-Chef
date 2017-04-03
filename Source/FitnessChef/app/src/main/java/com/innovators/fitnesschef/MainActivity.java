@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void in(View v)
     {
-        Intent redirect=new Intent(MainActivity.this,SignUpActivity.class);
+        Intent redirect=new Intent(MainActivity.this,home.class);
         startActivity(redirect);
     }
 
