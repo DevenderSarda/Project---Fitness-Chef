@@ -1,20 +1,16 @@
 package com.innovators.fitnesschef;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,7 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class BreakfastActivity extends AppCompatActivity {
+public class DinnerActivity extends AppCompatActivity {
     int PICK_IMAGE=1;
     String s;
     Bitmap bitmap;
@@ -48,28 +44,28 @@ public class BreakfastActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breakfast);
-     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        setContentView(R.layout.activity_dinner);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-         l = (ListView) findViewById(R.id.list);
-         myStringArray1 = new ArrayList<String>();
+        l = (ListView) findViewById(R.id.list);
+        myStringArray1 = new ArrayList<String>();
     }
 
     public void upload(View v) {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
-        AlertDialog.Builder builder = new AlertDialog.Builder(BreakfastActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(DinnerActivity.this);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
 
                 if (items[item].equals("Take Photo")) {
-                        cameraIntent();
+                    cameraIntent();
 
-                        }
-                 else if (items[item].equals("Choose from Library")) {
-                        galleryIntent();
+                }
+                else if (items[item].equals("Choose from Library")) {
+                    galleryIntent();
 
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
@@ -79,12 +75,12 @@ public class BreakfastActivity extends AppCompatActivity {
         builder.show();
 
     }
-private void cameraIntent()
-{
-    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+    private void cameraIntent()
+    {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
 
-}
+    }
     private  void galleryIntent()
     {
         Intent gallery=new Intent();
@@ -105,7 +101,7 @@ private void cameraIntent()
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       imagescan();  //Do something after 100ms
+                        imagescan();  //Do something after 100ms
                     }
                 }, 1000);
                 handler.postDelayed(new Runnable() {
@@ -145,7 +141,7 @@ private void cameraIntent()
     }
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = BreakfastActivity.this.getContentResolver().query(uri, projection, null, null, null);
+        Cursor cursor = DinnerActivity.this.getContentResolver().query(uri, projection, null, null, null);
         int columnIndex = cursor.getColumnIndex(projection[0]);
         cursor.moveToFirst();
         return cursor.getString(columnIndex);
@@ -224,7 +220,7 @@ private void cameraIntent()
             }
             response = sb.toString();
             JSONObject o=new JSONObject(response);
-             str=o.getString("calories");
+            str=o.getString("calories");
         } catch (Exception e) {
             e.getMessage();
         }
@@ -234,10 +230,10 @@ private void cameraIntent()
         EditText t=(EditText) findViewById(R.id.editText3);
         x=t.getText().toString();
         getcallories(x);
-       quantity();
+        quantity();
 
         ;
-       // new task1().execute(x);
+        // new task1().execute(x);
     }
     private void dis(String x)
     {
@@ -257,19 +253,17 @@ private void cameraIntent()
     }
 
     public void quantity() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(BreakfastActivity.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DinnerActivity.this);
         builder.setTitle("Quantity!");
-        TextView tv=new TextView(BreakfastActivity.this);
-        tv.setText("Quantity:");
-        final EditText input = new EditText(BreakfastActivity.this);
+        final EditText input = new EditText(DinnerActivity.this);
         input.setText("1");
-        builder.setView(tv);
+
         builder.setView(input);
         builder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {
-                         q=input.getText().toString();
+                        q=input.getText().toString();
                         if(q.isEmpty())
                         {
                             q="0";
@@ -281,26 +275,11 @@ private void cameraIntent()
                 });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-dialog.cancel();
+                dialog.cancel();
                 dis(x);
             }
         });
         builder.show();
 
     }
-
-
-  /*  private class task1 extends AsyncTask<String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... urls){
-            getcallories(urls[0]);
-            quantity();
-return urls[0];
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            dis(result);
-        }
-    }*/
 }

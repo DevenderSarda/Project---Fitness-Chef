@@ -37,7 +37,52 @@ public class diaryFragment extends Fragment {
                 getActivity().startActivity(in);
             }
         });
-return view;
+        Button button1 = (Button) view.findViewById(R.id.lunch_food);
+
+        button1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent in=new Intent(getActivity(),LunchActivity.class);
+                getActivity().startActivity(in);
+            }
+        });
+
+        Button button2 = (Button) view.findViewById(R.id.dinner_food);
+
+        button2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent in=new Intent(getActivity(),DinnerActivity.class);
+                getActivity().startActivity(in);
+            }
+        });
+        Button button3 = (Button) view.findViewById(R.id.snacks_food);
+
+        button3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent in=new Intent(getActivity(),SnacksActivity.class);
+                getActivity().startActivity(in);
+            }
+        });
+        Button button4 = (Button) view.findViewById(R.id.excerise_reg);
+
+        button4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent in=new Intent(getActivity(),ExerciseActivity.class);
+                getActivity().startActivity(in);
+            }
+        });
+        return view;
+    }
     }
 
-}
