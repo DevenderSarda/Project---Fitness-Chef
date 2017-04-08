@@ -2,6 +2,7 @@ package com.innovators.fitnesschef;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +19,23 @@ public class ExerciseActivity extends AppCompatActivity {
     ArrayList<String> myStringArray1;
     String x;
     String q;
+    static int k=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         l = (ListView) findViewById(R.id.list);
         myStringArray1 = new ArrayList<String>();
+        SharedPreferences settings = getSharedPreferences("username+exercise", 0);
+        //     SharedPreferences.Editor editor = settings.edit();
+        for(int j=1;j<=settings.getInt("listsize",0);j++)
+        {
+            String r=  settings.getString("exerciselist"+j,"");
+            myStringArray1.add(r);
+        }
+        k=settings.getInt("listsize",0);
+        mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
+        l.setAdapter(mAdapter);
     }
     public void additem(View v)
     {
@@ -66,9 +78,15 @@ public class ExerciseActivity extends AppCompatActivity {
     }
     private void dis(String x)
     {
+        k=k+1;
         myStringArray1.add(x.toUpperCase()+",           "+"CALORIES: "+q);
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
+        SharedPreferences settings = getSharedPreferences("username+exercise", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("exerciselist"+k,x.toUpperCase()+",           "+"CALORIES: "+q);
+        editor.putInt("listsize",k);
+        editor.commit();
     }
 }

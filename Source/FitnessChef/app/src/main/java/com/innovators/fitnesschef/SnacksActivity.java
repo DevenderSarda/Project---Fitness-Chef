@@ -3,6 +3,7 @@ package com.innovators.fitnesschef;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -41,6 +42,7 @@ public class SnacksActivity extends AppCompatActivity {
     String q;
     String z;
     String x;
+    static int k=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,16 @@ public class SnacksActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         l = (ListView) findViewById(R.id.list);
         myStringArray1 = new ArrayList<String>();
+        SharedPreferences settings = getSharedPreferences("username+snacks", 0);
+        //     SharedPreferences.Editor editor = settings.edit();
+        for(int j=1;j<=settings.getInt("listsize",0);j++)
+        {
+            String r=  settings.getString("snackslist"+j,"");
+            myStringArray1.add(r);
+        }
+        k=settings.getInt("listsize",0);
+        mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
+        l.setAdapter(mAdapter);
     }
     public void upload(View v) {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
@@ -236,11 +248,17 @@ public class SnacksActivity extends AppCompatActivity {
     }
     private void dis(String x)
     {
+        k=k+1;
         int i=(Integer.parseInt(q.toString()))*(Integer.parseInt(str.toString()));
         myStringArray1.add(x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
+        SharedPreferences settings = getSharedPreferences("username+snacks", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("snackslist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
+        editor.putInt("listsize",k);
+        editor.commit();
     }
 
     private void add()
