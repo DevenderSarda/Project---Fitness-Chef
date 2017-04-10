@@ -12,8 +12,11 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,16 +45,22 @@ public class SnacksActivity extends AppCompatActivity {
     String q;
     String z;
     String x;
+    String g;
+    int v;
     static int k=0;
+    AutoCompleteTextView t;
+    String res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snacks);
+        Intent intent = getIntent();
+        g = intent.getStringExtra("email");
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         l = (ListView) findViewById(R.id.list);
         myStringArray1 = new ArrayList<String>();
-        SharedPreferences settings = getSharedPreferences("username+snacks", 0);
+        SharedPreferences settings = getSharedPreferences(g+"snacks", 0);
         //     SharedPreferences.Editor editor = settings.edit();
         for(int j=1;j<=settings.getInt("listsize",0);j++)
         {
@@ -61,6 +70,65 @@ public class SnacksActivity extends AppCompatActivity {
         k=settings.getInt("listsize",0);
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
+        t=(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
+        t.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                res=t.getText().toString();
+                if(res!=null & res.length()>3) {
+                    auto(res);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+/*str=a.getText().toString();
+                if(str!=null) {
+                    auto(str);
+                }*/
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+ /*str=a.getText().toString();
+                if(str!=null) {
+                    auto(str);
+                }*/
+            }
+        });
+    }
+    public void auto(String x) {
+        String getURL = "https://api.nutritionix.com/v2/autocomplete?q="+x+"%20&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
+        String response = null;
+        BufferedReader bfr = null;
+        try {
+            URL url = new URL(getURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            bfr = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = bfr.readLine()) != null) {
+                // Append server response in string
+                sb.append(line + " ");
+            }
+            response = sb.toString();
+            JSONArray j=new JSONArray(response);
+            String []s=new String[j.length()];
+            for(int i=0;i<j.length();i++)
+            {
+                JSONObject o=j.getJSONObject(i);
+                s[i]=o.getString("text");
+            }
+            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,s);
+            t.setAdapter(adapter);
+            t.setThreshold(5);
+
+        } catch (Exception e)
+        {
+
+        }
     }
     public void upload(View v) {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
@@ -214,7 +282,14 @@ public class SnacksActivity extends AppCompatActivity {
     }
 
     public void getcallories(String n) {
-        String getURL = "https://api.edamam.com/api/nutrition-data?app_id=254d36ea&app_key=383e71430a323ae94ec781cab4b8918a&ingr=1%20large%20" + n;
+        String getURL;
+        if(n.contains(" ")) {
+            String[] l = n.split(" ");
+            getURL = "https://api.nutritionix.com/v1_1/search/"+l[0]+"%20"+l[1]+"?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
+        }
+        else {
+            getURL = "https://api.nutritionix.com/v1_1/search/" + n + "%20" + "?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
+        }
         String response = null;
         BufferedReader bfr = null;
         try {
@@ -230,15 +305,24 @@ public class SnacksActivity extends AppCompatActivity {
                 sb.append(line + " ");
             }
             response = sb.toString();
+
             JSONObject o=new JSONObject(response);
-            str=o.getString("calories");
-        } catch (Exception e) {
-            e.getMessage();
+            JSONArray j=o.getJSONArray("hits");
+            for(int k=0;k<j.length();k++) {
+                JSONObject a = j.getJSONObject(k);
+                JSONObject r = a.getJSONObject("fields");
+                str = r.getString("nf_calories");
+                if(str!="0")
+                {
+                    break;
+                }
+            }
+
+        }catch (Exception e) {
         }
     }
     public void additem(View v)
     {
-        EditText t=(EditText) findViewById(R.id.editText3);
         x=t.getText().toString();
         getcallories(x);
         quantity();
@@ -254,10 +338,12 @@ public class SnacksActivity extends AppCompatActivity {
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-        SharedPreferences settings = getSharedPreferences("username+snacks", 0);
+        SharedPreferences settings = getSharedPreferences(g+"snacks", 0);
+        v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("snackslist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
         editor.putInt("listsize",k);
+        editor.putInt("value",(int)i+v);
         editor.commit();
     }
 

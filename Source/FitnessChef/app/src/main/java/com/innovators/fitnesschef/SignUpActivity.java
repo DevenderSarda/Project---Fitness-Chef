@@ -16,7 +16,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void goal(View v)
     {
-        Intent redirect=new Intent(SignUpActivity.this,GoalActivity.class);
+        Intent redirect=new Intent(SignUpActivity.this,RegisterActivity.class);
         startActivity(redirect);
     }
 }

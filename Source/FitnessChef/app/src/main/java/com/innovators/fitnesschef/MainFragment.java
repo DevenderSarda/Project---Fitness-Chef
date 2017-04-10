@@ -1,11 +1,15 @@
 package com.innovators.fitnesschef;
 
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -13,7 +17,12 @@ import android.view.ViewGroup;
  */
 public class MainFragment extends Fragment {
 
-
+String g;
+    TextView v;
+    TextView f;
+    TextView e;
+    TextView r;
+    int n;
     public MainFragment() {
         // Required empty public constructor
     }
@@ -23,7 +32,22 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+      // g=  getArguments().getString("email");
+       View root= inflater.inflate(R.layout.fragment_main, container, false);
+        home h=(home)getActivity();
+        g=h.get();
+       v=(TextView) root.findViewById(R.id.gvalue);
+     f=(TextView) root.findViewById(R.id.fvalue);
+        e=(TextView) root .findViewById(R.id.evalue);
+        r=(TextView) root.findViewById(R.id.result);
+
+        SharedPreferences sp = getActivity().getSharedPreferences(g,0);
+        v.setText(Integer.toString(sp.getInt("estcal",0)));
+        SharedPreferences shared = getActivity().getSharedPreferences(g+"cal",0);
+       f.setText(Integer.toString(shared.getInt("food", 0)));
+        e.setText(Integer.toString(shared.getInt("exercise", 0)));
+        r.setText(Integer.toString(shared.getInt("result",Integer.parseInt(v.getText().toString()))));
+        return root;
     }
 
 }

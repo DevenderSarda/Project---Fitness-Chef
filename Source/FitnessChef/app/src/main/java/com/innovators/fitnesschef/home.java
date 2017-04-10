@@ -1,5 +1,6 @@
 package com.innovators.fitnesschef;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,10 +18,14 @@ public class home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView=null;
     Toolbar toolbar=null;
+    String g;
+    int cal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Bundle extras = getIntent().getExtras();
+        g=extras.getString("email");
         MainFragment fragment=new MainFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,fragment);
@@ -86,12 +91,14 @@ public class home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+
             MainFragment fragment=new MainFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
             // Handle the camera action
         } else if (id == R.id.nav_diary) {
+
             diaryFragment fragment=new diaryFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
@@ -110,5 +117,9 @@ public class home extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public String get()
+    {
+        return g;
     }
 }

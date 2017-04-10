@@ -50,7 +50,8 @@
         <activity android:name=".LunchActivity" />
         <activity android:name=".DinnerActivity" />
         <activity android:name=".SnacksActivity" />
-        <activity android:name=".ExerciseActivity"></activity>
+        <activity android:name=".ExerciseActivity" />
+        <activity android:name=".targetgoalActivity"></activity>
     </application>
 
 </manifest>

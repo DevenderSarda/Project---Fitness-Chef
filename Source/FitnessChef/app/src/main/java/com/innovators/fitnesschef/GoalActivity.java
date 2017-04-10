@@ -22,6 +22,7 @@ public class GoalActivity extends AppCompatActivity {
     private EditText h;
     private EditText w;
     private TextView t;
+    String g;
     @Override
 
 
@@ -37,6 +38,8 @@ public class GoalActivity extends AppCompatActivity {
 
         h.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
         w.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+        Bundle extras = getIntent().getExtras();
+        g=extras.getString("email");
     }
 
     public void details(View v)
@@ -49,16 +52,28 @@ public class GoalActivity extends AppCompatActivity {
             {
                 Log.d("GoalActivity",s);
                 //shared preferences
-                SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+                SharedPreferences sp = getSharedPreferences(g,0);
                 SharedPreferences.Editor edt = sp.edit();
                 edt.putString("height",s);
                 edt.putString("weight",u);
                 edt.commit();
-
-
-
-                Intent redirect=new Intent(GoalActivity.this,DetailsActivity.class);
-                startActivity(redirect);
+                if(r1.isSelected()) {
+                    Intent redirect = new Intent(GoalActivity.this, targetgoalActivity.class);
+                    redirect.putExtra("email", g);
+                    startActivity(redirect);
+                }
+                else if(r2.isSelected())
+                {
+                    Intent redirect = new Intent(GoalActivity.this, DetailsActivity.class);
+                    redirect.putExtra("email", g);
+                    startActivity(redirect);
+                }
+                else
+                {
+                    Intent redirect = new Intent(GoalActivity.this, targetgoalActivity.class);
+                    redirect.putExtra("email", g);
+                    startActivity(redirect);
+                }
             }
             else{
                 if(s.isEmpty()&u.isEmpty())

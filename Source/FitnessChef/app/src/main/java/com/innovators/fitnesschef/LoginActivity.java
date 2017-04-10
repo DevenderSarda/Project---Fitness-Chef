@@ -58,22 +58,19 @@ public class LoginActivity extends AppCompatActivity  {
         } else if (y.isEmpty()) {
             pass.setError("Password is required");
         } else {
-            if (x.equals("nandigam.nag@gmail.com") & y.equals("hello")) {
-
+            SharedPreferences sp = getSharedPreferences(x, Activity.MODE_PRIVATE);
+            if (x.equals(sp.getString("email","")) & y.equals(sp.getString("password",""))) {
+                Intent redirect = new Intent(LoginActivity.this, home.class);
+                redirect.putExtra("email",x);
+                startActivity(redirect);
             } else {
                 email.setError("Email or Password Mismatch");
                 pass.setError("Email or Password Mismatch");
             }
         }
 
-        SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor edt = sp.edit();
 
-        edt.putString("Name", email.getText().toString());
-        edt.commit();
 
-        Intent redirect = new Intent(LoginActivity.this, Dashboard.class);
-        startActivity(redirect);
 
     }
 

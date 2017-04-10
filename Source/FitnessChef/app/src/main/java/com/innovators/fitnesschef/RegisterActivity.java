@@ -1,6 +1,7 @@
 package com.innovators.fitnesschef;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,8 +33,15 @@ public class RegisterActivity extends AppCompatActivity {
     public void reg(View v)
     {
 
-
-        Intent redirect=new Intent(RegisterActivity.this,home.class);
+        String s=email.getText().toString();
+        SharedPreferences settings = getSharedPreferences(s,0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("email",s);
+        editor.putString("username",nam.getText().toString());
+        editor.putString("password",pas.getText().toString());
+        editor.commit();
+        Intent redirect=new Intent(RegisterActivity.this,GoalActivity.class);
+        redirect.putExtra("email",s);
         startActivity(redirect);
     }
 }
