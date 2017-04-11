@@ -1,6 +1,7 @@
 package com.innovators.fitnesschef;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +53,12 @@ public class home extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView drawerUsername = (TextView) headerView.findViewById(R.id.user);
+        TextView drawerAccount = (TextView) headerView.findViewById(R.id.textView);
+        SharedPreferences sp=getSharedPreferences(g,0);
+        drawerUsername.setText(sp.getString("fullname",""));
+        drawerAccount.setText(g);
     }
 
     @Override
@@ -109,9 +118,13 @@ public class home extends AppCompatActivity
         } else if (id == R.id.nav_nutrition) {
 
         } else if (id == R.id.nav_profile) {
+            Intent intent= new Intent(home.this,ProfileActivity.class);
+            intent.putExtra("email",g);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
-
+            Intent intent= new Intent(home.this,LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

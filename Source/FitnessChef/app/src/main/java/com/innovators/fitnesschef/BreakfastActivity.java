@@ -52,6 +52,7 @@ public class BreakfastActivity extends AppCompatActivity {
     String x;
     String g;
     String res;
+    String z;
     AutoCompleteTextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,6 @@ public class BreakfastActivity extends AppCompatActivity {
                         }
                  else if (items[item].equals("Choose from Library")) {
                         galleryIntent();
-
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -176,23 +176,25 @@ private void cameraIntent()
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+
             Uri uri = data.getData();
             s=getPath(uri);
             try {
+
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       imagescan();  //Do something after 100ms
+                         z=imagescan();  //Do something after 100ms
                     }
                 }, 1000);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getcallories(n);  //Do something after 100ms
+                        imagecal(z);  //Do something after 100ms
                     }
                 }, 2000);
-                add();
+
             }catch (Exception e)
             {
 
@@ -204,16 +206,15 @@ private void cameraIntent()
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        imagescan();  //Do something after 100ms
+                       z= imagescan();  //Do something after 100ms
                     }
                 }, 1000);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getcallories(n);  //Do something after 100ms
+                        imagecal(z);  //Do something after 100ms
                     }
                 }, 2000);
-                add();
             }
             catch (Exception e)
             {
@@ -229,9 +230,9 @@ private void cameraIntent()
         return cursor.getString(columnIndex);
     }
 
-    private void imagescan()
+    private String imagescan()
     {
-        String getURL = "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=94848e5ce4ed34c5ec88f5bc86c409bca1f0ca95&version=2016-05-19";
+        String getURL = "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=70a9f535a305c037b94d1f6b94976c6935af2e37&version=2016-05-19";
 
         String response = null;
         BufferedReader bfr = null;
@@ -276,12 +277,11 @@ private void cameraIntent()
             JSONObject f=e.getJSONObject(0);
             n=f.getString("class");
 
-
         }catch (Exception e)
         {
             e.getMessage();
         }
-
+        return n;
     }
 
     public void getcallories(String n) {
@@ -303,25 +303,27 @@ private void cameraIntent()
             bfr = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
-            while ((line = bfr.readLine()) != null) {
-                // Append server response in string
-                sb.append(line + " ");
-            }
-            response = sb.toString();
-
-            JSONObject o=new JSONObject(response);
-            JSONArray j=o.getJSONArray("hits");
-            for(int k=0;k<j.length();k++) {
-                JSONObject a = j.getJSONObject(k);
-                JSONObject r = a.getJSONObject("fields");
-                str = r.getString("nf_calories");
-                if(str!="0")
-                {
-                    break;
+            if (bfr != null) {
+                while ((line = bfr.readLine()) != null) {
+                    // Append server response in string
+                    sb.append(line + " ");
                 }
-            }
+                response = sb.toString();
 
+                JSONObject o = new JSONObject(response);
+                JSONArray j = o.getJSONArray("hits");
+                for (int k = 0; k < j.length(); k++) {
+                    JSONObject a = j.getJSONObject(k);
+                    JSONObject r = a.getJSONObject("fields");
+                    str = r.getString("nf_calories");
+                    if (str != "0") {
+                        break;
+                    }
+                }
+
+            }
         }catch (Exception e) {
+            e.getMessage();
         }
     }
 
@@ -346,20 +348,26 @@ private void cameraIntent()
         SharedPreferences settings = getSharedPreferences(g+"breakfast",0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("breakfastlist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
+        editor.putString("breakfastlist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+(int)i);
         editor.putInt("listsize",k);
         editor.putInt("value",(int)i+v);
         editor.commit();
 
     }
 
-    private void add()
-    {
-        myStringArray1.add(n.toUpperCase()+"                                        "+str);
+    private void add(String x)
+    {  k=k+1;
+        myStringArray1.add(x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
         //   myStringArray1.add("Quantity : 1");
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-
+        SharedPreferences settings = getSharedPreferences(g+"breakfast",0);
+        v=settings.getInt("value",0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("breakfastlist"+k,x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
+        editor.putInt("listsize",k);
+        editor.putInt("value",(int)Float.parseFloat(str)+v);
+        editor.commit();
     }
 
     public void quantity() {
@@ -395,18 +403,49 @@ dialog.cancel();
 
     }
 
-
-  /*  private class task1 extends AsyncTask<String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... urls){
-            getcallories(urls[0]);
-            quantity();
-return urls[0];
+    public  void imagecal(String n)
+    {
+        String getURL;
+        if(n.contains(" ")) {
+            String[] l = n.split(" ");
+            getURL = "https://api.nutritionix.com/v1_1/search/"+l[0]+"%20"+l[1]+"?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
         }
-        @Override
-        protected void onPostExecute(String result) {
-            dis(result);
+        else {
+            getURL = "https://api.nutritionix.com/v1_1/search/" + n + "%20" + "?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
         }
-    }*/
+        String response = null;
+        BufferedReader bfr = null;
+        try {
+            URL url = new URL(getURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            bfr = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            if (bfr != null) {
+                while ((line = bfr.readLine()) != null) {
+                    // Append server response in string
+                    sb.append(line + " ");
+                }
+                response = sb.toString();
+
+                JSONObject o = new JSONObject(response);
+                JSONArray j = o.getJSONArray("hits");
+                for (int k = 0; k < j.length(); k++) {
+                    JSONObject a = j.getJSONObject(k);
+                    JSONObject r = a.getJSONObject("fields");
+                    str = r.getString("nf_calories");
+                    if (str != "0") {
+                        break;
+                    }
+                }
+
+            }
+            add(z);
+        }catch (Exception e) {
+            e.getMessage();
+        }
+
+    }
 }

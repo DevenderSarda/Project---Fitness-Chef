@@ -37,7 +37,7 @@
         android:id="@+id/button11"
         android:backgroundTint="?attr/colorButtonNormal"
         android:textColor="@android:color/background_dark"
-        android:onClick="upload (LunchActivity)"
+        android:onClick="cp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

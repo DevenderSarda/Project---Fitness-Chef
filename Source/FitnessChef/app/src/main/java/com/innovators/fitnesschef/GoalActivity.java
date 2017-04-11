@@ -57,12 +57,12 @@ public class GoalActivity extends AppCompatActivity {
                 edt.putString("height",s);
                 edt.putString("weight",u);
                 edt.commit();
-                if(r1.isSelected()) {
+                if(r1.isChecked()) {
                     Intent redirect = new Intent(GoalActivity.this, targetgoalActivity.class);
                     redirect.putExtra("email", g);
                     startActivity(redirect);
                 }
-                else if(r2.isSelected())
+                else if(r2.isChecked())
                 {
                     Intent redirect = new Intent(GoalActivity.this, DetailsActivity.class);
                     redirect.putExtra("email", g);

@@ -70,7 +70,7 @@ public class SnacksActivity extends AppCompatActivity {
         k=settings.getInt("listsize",0);
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-        t=(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
+        t=(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView4);
         t.addTextChangedListener(new TextWatcher(){
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -180,16 +180,15 @@ public class SnacksActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        imagescan();  //Do something after 100ms
+                       z= imagescan();  //Do something after 100ms
                     }
                 }, 1000);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getcallories(n);  //Do something after 100ms
-                    }
+imagecal(z);                    }
                 }, 2000);
-                add();
+
             }catch (Exception e)
             {
 
@@ -201,16 +200,16 @@ public class SnacksActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        imagescan();  //Do something after 100ms
+                       z= imagescan();  //Do something after 100ms
                     }
                 }, 1000);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getcallories(n);  //Do something after 100ms
+                        imagecal(z); //Do something after 100ms
                     }
                 }, 2000);
-                add();
+
             }
             catch (Exception e)
             {
@@ -226,9 +225,9 @@ public class SnacksActivity extends AppCompatActivity {
         return cursor.getString(columnIndex);
     }
 
-    private void imagescan()
+    private String imagescan()
     {
-        String getURL = "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=94848e5ce4ed34c5ec88f5bc86c409bca1f0ca95&version=2016-05-19";
+        String getURL = "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=70a9f535a305c037b94d1f6b94976c6935af2e37&version=2016-05-19";
 
         String response = null;
         BufferedReader bfr = null;
@@ -278,7 +277,7 @@ public class SnacksActivity extends AppCompatActivity {
         {
             e.getMessage();
         }
-
+return n;
     }
 
     public void getcallories(String n) {
@@ -347,12 +346,20 @@ public class SnacksActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void add()
+    private void add(String x)
     {
-        myStringArray1.add(n.toUpperCase()+"                                        "+str);
+        k=k+1;
+        myStringArray1.add(x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
         //   myStringArray1.add("Quantity : 1");
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
+        SharedPreferences settings = getSharedPreferences(g+"snacks",0);
+        v=settings.getInt("value",0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("snackslist"+k,x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
+        editor.putInt("listsize",k);
+        editor.putInt("value",(int)Float.parseFloat(str)+v);
+        editor.commit();
     }
 
     public void quantity() {
@@ -385,6 +392,51 @@ public class SnacksActivity extends AppCompatActivity {
             }
         });
         builder.show();
+
+    }
+    public  void imagecal(String n)
+    {
+        String getURL;
+        if(n.contains(" ")) {
+            String[] l = n.split(" ");
+            getURL = "https://api.nutritionix.com/v1_1/search/"+l[0]+"%20"+l[1]+"?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
+        }
+        else {
+            getURL = "https://api.nutritionix.com/v1_1/search/" + n + "%20" + "?fields=item_name%2Cnf_calories&appId=1d65c19f&appKey=7679fb7207c9b4a2bf091490eb233443";
+        }
+        String response = null;
+        BufferedReader bfr = null;
+        try {
+            URL url = new URL(getURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            bfr = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            if (bfr != null) {
+                while ((line = bfr.readLine()) != null) {
+                    // Append server response in string
+                    sb.append(line + " ");
+                }
+                response = sb.toString();
+
+                JSONObject o = new JSONObject(response);
+                JSONArray j = o.getJSONArray("hits");
+                for (int k = 0; k < j.length(); k++) {
+                    JSONObject a = j.getJSONObject(k);
+                    JSONObject r = a.getJSONObject("fields");
+                    str = r.getString("nf_calories");
+                    if (str != "0") {
+                        break;
+                    }
+                }
+
+            }
+            add(z);
+        }catch (Exception e) {
+            e.getMessage();
+        }
 
     }
 }

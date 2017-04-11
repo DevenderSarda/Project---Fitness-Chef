@@ -50,7 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
              String w=sp.getString("weight","");
              String h=sp.getString("height","");
              SharedPreferences.Editor editor = sp.edit();
-             if(m.isSelected()) {
+             if(m.isChecked()) {
                  d = (10 * (Float.parseFloat(w)) + (6.25 * (Float.parseFloat(h))) - (5 * Float.parseFloat(person_age)) + 5);
                  editor.putString("gender",m.getText().toString());
              }

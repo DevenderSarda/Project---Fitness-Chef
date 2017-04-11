@@ -22,7 +22,7 @@
         android:layout_marginTop="11dp" />
 
     <TextView
-        android:text="lbs"
+        android:text="Kgs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView14"
@@ -66,7 +66,7 @@
         android:layout_alignParentStart="true">
 
     <RadioButton
-        android:text="Lose 0.5 lbs per week"
+        android:text="Lose 0.25 Kgs per week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView15"
@@ -78,7 +78,7 @@
         android:layout_toStartOf="@+id/textView14" />
 
     <RadioButton
-        android:text="Lose 1lbs per week"
+        android:text="Lose 0.5 kgs per week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -88,7 +88,7 @@
         android:layout_alignStart="@+id/radioButton" />
 
     <RadioButton
-        android:text="Lose 1.5 lbs per week"
+        android:text="Lose 1 Kgs per week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
