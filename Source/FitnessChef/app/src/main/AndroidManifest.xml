@@ -41,27 +41,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:label="Register"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Register" />
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BreakfastActivity"
+        <activity
+            android:name=".BreakfastActivity"
             android:label="Breakfast" />
-        <activity android:name=".LunchActivity"
-            android:label="Lunch"/>
-        <activity android:name=".DinnerActivity"
-            android:label="Dinner"/>
-        <activity android:name=".SnacksActivity"
-            android:label="Snacks"/>
-        <activity android:name=".ExerciseActivity"
-            android:label="Exercise"/>
-        <activity android:name=".targetgoalActivity"
-            android:label="Target Goal"/>
-        <activity android:name=".ProfileActivity"
-            android:label="Profile">
-        </activity>
+        <activity
+            android:name=".LunchActivity"
+            android:label="Lunch" />
+        <activity
+            android:name=".DinnerActivity"
+            android:label="Dinner" />
+        <activity
+            android:name=".SnacksActivity"
+            android:label="Snacks" />
+        <activity
+            android:name=".ExerciseActivity"
+            android:label="Exercise" />
+        <activity
+            android:name=".targetgoalActivity"
+            android:label="Target Goal" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile" />
+        <activity android:name=".helpex"
+            android:label="Cardio"/>
+        <activity android:name=".strength"
+            android:label="Strength"></activity>
     </application>
 
 </manifest>
