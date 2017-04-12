@@ -35,11 +35,6 @@
             android:name=".SignUpActivity"
             android:label="Sign Up" />
         <activity android:name=".Dashboard">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"
             android:label="Register"/>
