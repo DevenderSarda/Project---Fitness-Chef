@@ -190,7 +190,10 @@ public class home extends AppCompatActivity
         } else if (id == R.id.nav_progess) {
 
         } else if (id == R.id.nav_nutrition) {
-
+DashboardFragment fragment= new DashboardFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_profile) {
             Intent intent= new Intent(home.this,ProfileActivity.class);
             intent.putExtra("email",g);
@@ -222,5 +225,19 @@ public class home extends AppCompatActivity
     {
         Intent redirect=new Intent(home.this,strength.class);
         startActivity(redirect);
+    }
+    public void dash(View v)
+    {
+        DashboardFragment fragment= new DashboardFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
+        fragmentTransaction.commit();
+    }
+    public void diaryclick(View v)
+    {
+        diaryFragment fragment=new diaryFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
+        fragmentTransaction.commit();
     }
 }

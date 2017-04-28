@@ -63,7 +63,7 @@
         android:layout_marginBottom="200dp"
         app:srcCompat="@drawable/nutrition"
         app:backgroundTint="#FF4500"
-        android:onClick="diaryclick"
+        android:onClick="dash"
         android:elevation="6dp"
         android:visibility="invisible"/>
 
@@ -93,7 +93,6 @@
         android:layout_marginBottom="80dp"
         app:srcCompat="@drawable/prog"
         app:backgroundTint="#50D050"
-        android:onClick="add"
         android:elevation="6dp"
 
         android:visibility="invisible"/>

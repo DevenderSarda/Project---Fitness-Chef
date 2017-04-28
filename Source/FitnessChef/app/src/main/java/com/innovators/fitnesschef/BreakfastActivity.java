@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -340,7 +341,7 @@ private void cameraIntent()
     private void dis(String x)
     {
         k=k+1;
-        float i=(Integer.parseInt(q.toString()))*(Float.parseFloat(str.toString()));
+        float i=(Integer.parseInt(q))*(Float.parseFloat(str));
         myStringArray1.add(x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+(int)i);
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
@@ -448,4 +449,5 @@ dialog.cancel();
         }
 
     }
+
 }

@@ -332,15 +332,15 @@ return n;
     private void dis(String x)
     {
         k=k+1;
-        int i=(Integer.parseInt(q.toString()))*(Integer.parseInt(str.toString()));
-        myStringArray1.add(x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
+        float i=(Integer.parseInt(q))*(Float.parseFloat(str));
+        myStringArray1.add(x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+(int)i);
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
         SharedPreferences settings = getSharedPreferences(g+"snacks", 0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("snackslist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+i);
+        editor.putString("snackslist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+(int)i);
         editor.putInt("listsize",k);
         editor.putInt("value",(int)i+v);
         editor.commit();
@@ -349,16 +349,16 @@ return n;
     private void add(String x)
     {
         k=k+1;
-        myStringArray1.add(x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
+        myStringArray1.add(x.toUpperCase()+"          Calories       "+(int)(Float.parseFloat(str)));
         //   myStringArray1.add("Quantity : 1");
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
         SharedPreferences settings = getSharedPreferences(g+"snacks",0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("snackslist"+k,x.toUpperCase()+"          Calories       "+(int)Float.parseFloat(str));
+        editor.putString("snackslist"+k,x.toUpperCase()+"          Calories       "+(int)(Float.parseFloat(str)));
         editor.putInt("listsize",k);
-        editor.putInt("value",(int)Float.parseFloat(str)+v);
+        editor.putInt("value",(int)(Float.parseFloat(str))+v);
         editor.commit();
     }
 
