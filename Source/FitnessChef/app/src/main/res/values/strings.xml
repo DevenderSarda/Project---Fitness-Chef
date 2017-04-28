@@ -3,6 +3,7 @@
     <string name="app_name_goal">Goal</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_home">Home</string>
+    <string name="facebook_app_id">389871311377667</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

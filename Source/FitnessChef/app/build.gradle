@@ -19,6 +19,11 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -26,13 +31,19 @@ dependencies {
     })
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.3.1'
+
+
     compile 'com.ibm.watson.developer_cloud:java-sdk:3.6.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.14.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.github.clans:fab:1.6.2'
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
-    compile 'com.google.android.gms:play-services:10.0.1'
+
+
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-plus:10.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
     testCompile 'junit:junit:4.12'
 }
