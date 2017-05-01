@@ -188,7 +188,10 @@ public class home extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_progess) {
-
+            progress fragment= new progress();
+            android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_nutrition) {
 DashboardFragment fragment= new DashboardFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
@@ -236,6 +239,13 @@ DashboardFragment fragment= new DashboardFragment();
     public void diaryclick(View v)
     {
         diaryFragment fragment=new diaryFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
+        fragmentTransaction.commit();
+    }
+    public void prog(View v)
+    {
+        progress fragment= new progress();
         android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,fragment);
         fragmentTransaction.commit();

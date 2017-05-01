@@ -17,7 +17,7 @@
         android:background="@android:color/background_light"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="150px">
+        android:layout_marginTop="310px">
 
         <TextView
             android:text="Calories Remaining"
@@ -90,7 +90,7 @@
             android:id="@+id/result"
             android:layout_marginTop="150px"
             android:layout_marginLeft="850px"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/holo_green_dark"
             android:textSize="16sp" />
 
         <TextView
@@ -134,7 +134,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="730px"
+        android:layout_marginTop="890px"
         android:background="@android:color/background_light">
         <TextView
             android:text="   Lunch"
@@ -166,7 +166,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="470px"
+        android:layout_marginTop="630px"
         android:background="@android:color/background_light">
 
         <TextView
@@ -199,7 +199,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1000px"
+        android:layout_marginTop="1160px"
         android:background="@android:color/background_light">
 
         <TextView
@@ -232,7 +232,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1250px"
+        android:layout_marginTop="1410px"
         android:background="@android:color/background_light">
 
         <TextView
@@ -265,7 +265,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1500px"
+        android:layout_marginTop="1660px"
         android:background="@android:color/background_light">
 
         <TextView
@@ -294,6 +294,14 @@
             android:background="#F8F8F8"
             android:textSize="12sp" />
     </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:id="@+id/button7"
+        android:layout_marginTop="150px"
+        android:text="Today"
+        android:background="#F8F8F8" />
 
 </FrameLayout>
 </ScrollView>

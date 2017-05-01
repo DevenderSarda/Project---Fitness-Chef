@@ -23,15 +23,17 @@ public class ExerciseActivity extends AppCompatActivity {
     String g;
     int v;
     static int k=0;
+    String datecontent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         Intent intent = getIntent();
         g = intent.getStringExtra("email");
+        datecontent=intent.getStringExtra("date");
         l = (ListView) findViewById(R.id.list);
         myStringArray1 = new ArrayList<String>();
-        SharedPreferences settings = getSharedPreferences(g+"exercise", 0);
+        SharedPreferences settings = getSharedPreferences(g+"exercise"+datecontent, 0);
         //     SharedPreferences.Editor editor = settings.edit();
         for(int j=1;j<=settings.getInt("listsize",0);j++)
         {
@@ -88,7 +90,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-        SharedPreferences settings = getSharedPreferences(g+"exercise", 0);
+        SharedPreferences settings = getSharedPreferences(g+"exercise"+datecontent, 0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("exerciselist"+k,x.toUpperCase()+",           "+"CALORIES: "+q);

@@ -50,17 +50,19 @@ public class SnacksActivity extends AppCompatActivity {
     static int k=0;
     AutoCompleteTextView t;
     String res;
+    String datecontent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snacks);
         Intent intent = getIntent();
         g = intent.getStringExtra("email");
+        datecontent=intent.getStringExtra("date");
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         l = (ListView) findViewById(R.id.list);
         myStringArray1 = new ArrayList<String>();
-        SharedPreferences settings = getSharedPreferences(g+"snacks", 0);
+        SharedPreferences settings = getSharedPreferences(g+"snacks"+datecontent, 0);
         //     SharedPreferences.Editor editor = settings.edit();
         for(int j=1;j<=settings.getInt("listsize",0);j++)
         {
@@ -337,7 +339,7 @@ return n;
 
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-        SharedPreferences settings = getSharedPreferences(g+"snacks", 0);
+        SharedPreferences settings = getSharedPreferences(g+"snacks"+datecontent, 0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("snackslist"+k,x.toUpperCase()+",  "+"QUANTITY: "+q+",  "+"CALORIES: "+(int)i);
@@ -353,7 +355,7 @@ return n;
         //   myStringArray1.add("Quantity : 1");
         mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myStringArray1);
         l.setAdapter(mAdapter);
-        SharedPreferences settings = getSharedPreferences(g+"snacks",0);
+        SharedPreferences settings = getSharedPreferences(g+"snacks"+datecontent,0);
         v=settings.getInt("value",0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("snackslist"+k,x.toUpperCase()+"          Calories       "+(int)(Float.parseFloat(str)));

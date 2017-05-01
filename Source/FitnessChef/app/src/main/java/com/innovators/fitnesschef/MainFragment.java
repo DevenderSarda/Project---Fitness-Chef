@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,10 +43,11 @@ String g;
      f=(TextView) root.findViewById(R.id.fvalue);
         e=(TextView) root .findViewById(R.id.evalue);
         r=(TextView) root.findViewById(R.id.result);
-
+        String pattern = "dd-MM-yyyy";
+        String dateInString =new SimpleDateFormat(pattern).format(new Date());
         SharedPreferences sp = getActivity().getSharedPreferences(g,0);
         v.setText(Integer.toString(sp.getInt("estcal",0)));
-        SharedPreferences shared = getActivity().getSharedPreferences(g+"cal",0);
+        SharedPreferences shared = getActivity().getSharedPreferences(g+"cal"+dateInString,0);
        f.setText(Integer.toString(shared.getInt("food", 0)));
         e.setText(Integer.toString(shared.getInt("exercise", 0)));
         r.setText(Integer.toString(shared.getInt("result",Integer.parseInt(v.getText().toString()))));
